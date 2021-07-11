@@ -17,7 +17,11 @@ namespace FunctionFullAnalysis
         private readonly ConstantExpression _zero = Expression.Constant(0d, typeof(double));
         private readonly ConstantExpression _one = Expression.Constant(1d, typeof(double));
 
-        public Expression Modify(Expression expression)
+        public Expression<Func<double, double>> GetDerivative(Expression<Func<double, double>> function)
+        {
+            return Expression.Lambda<Func<double, double>>(Visit(function.Body), function.Parameters);
+        }
+        private Expression Differntial(Expression expression)
         {
             return Visit(expression);
         }
@@ -31,16 +35,16 @@ namespace FunctionFullAnalysis
             switch (binaryExpr.NodeType) 
             {
                 case ExpressionType.Add:
-                    return Expression.Add(Visit(binaryExpr.Left), Visit(binaryExpr.Right));  
+                    return Expression.Add(Differntial(binaryExpr.Left), Differntial(binaryExpr.Right));  
                 case ExpressionType.Subtract:
-                    return Expression.Subtract(Visit(binaryExpr.Left), Visit(binaryExpr.Right));
+                    return Expression.Subtract(Differntial(binaryExpr.Left), Differntial(binaryExpr.Right));
                 case ExpressionType.Multiply:
-                    return Expression.Add(Expression.Multiply(Visit(binaryExpr.Left), binaryExpr.Right), Expression.Multiply(binaryExpr.Left, Visit(binaryExpr.Right)));
+                    return Expression.Add(Expression.Multiply(Differntial(binaryExpr.Left), binaryExpr.Right), Expression.Multiply(binaryExpr.Left, Differntial(binaryExpr.Right)));
                 case ExpressionType.Divide:
                     return Expression.Divide(
                         Expression.Subtract(
-                            Expression.Multiply(Visit(binaryExpr.Left), binaryExpr.Right), 
-                            Expression.Multiply(binaryExpr.Left, Visit(binaryExpr.Right))), 
+                            Expression.Multiply(Differntial(binaryExpr.Left), binaryExpr.Right), 
+                            Expression.Multiply(binaryExpr.Left, Differntial(binaryExpr.Right))), 
                         Expression.Multiply(binaryExpr.Right, binaryExpr.Right));
             }
             throw new NotImplementedException($"Метод {binaryExpr.NodeType} не реализован"); 
@@ -54,13 +58,13 @@ namespace FunctionFullAnalysis
                 switch (methodCall.Method.Name)
                 {
                     case nameof(Math.Sin):
-                        return Expression.Multiply(Visit(x), Expression.Call(null, _cos, x));
+                        return Expression.Multiply(Expression.Call(null, _cos, x), Differntial(x));
                     case nameof(Math.Cos):
-                        return Expression.Negate(Expression.Multiply(Visit(x), Expression.Call(null, _sin, x)));
+                        return Expression.Negate(Expression.Multiply(Expression.Call(null, _sin, x), Differntial(x)));
                 }
             }
 
-            throw new NotImplementedException($"Метод {methodCall.NodeType} не реализован");
+            throw new NotImplementedException($"Метод {methodCall.Method.Name} не реализован");
         }
     }
 }
