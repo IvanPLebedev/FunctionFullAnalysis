@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace FunctionFullAnalysis
+namespace FunctionFullAnalysis.Differentiators
 {
     class DifferentialVisitor : ExpressionVisitor
     {

@@ -4,9 +4,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FunctionFullAnalysis.Differential
+namespace FunctionFullAnalysis.Differentiators
 {
-    public class Differentiator
+    public class Differentiator: IDifferentiator
     {
         private readonly DifferentialVisitor visitor;
 

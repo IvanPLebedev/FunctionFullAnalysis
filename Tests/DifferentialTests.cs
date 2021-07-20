@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Linq.Expressions;
-using FunctionFullAnalysis.Differential;
+using FunctionFullAnalysis.Differentiators;
 
 namespace FunctionFullAnalysis.Tests
 {
