@@ -9,7 +9,7 @@ namespace FunctionFullAnalysis.Tests
     class DifferentialTests
     {
         private Differentiator differentiator = new Differentiator();
-        void AssertDerivativeEqualToNumericDerivative(Expression<Func<double, double>> function)
+        private void AssertDerivativeEqualToNumericDerivative(Expression<Func<double, double>> function)
         {
             var f = function.Compile();
             double eps = 1e-7;
