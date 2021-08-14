@@ -21,9 +21,45 @@ namespace FunctionFullAnalysis.Tests
         }
 
         [Test]
-        public void DifferentiateConstant()
+        public void FuncX()
         {
             AssertEqualtionHasSolution(x => x, -10, 10, 0, 1e-7);
+        }
+
+        [Test]
+        public void Func2X()
+        {
+            AssertEqualtionHasSolution(x => 2 * x, -10, 10, 0, 1e-7);
+        }
+
+        [Test]
+        public void Func2X2()
+        {
+            AssertEqualtionHasSolution(x => 2 * x + 2, -10, 10, -1, 1e-7);
+        }
+
+        [Test]
+        public void FuncSin()
+        {
+            AssertEqualtionHasSolution(x => Math.Sin(x), -Math.PI/4, Math.PI/4, 0, 1e-7);
+        }
+
+        [Test]
+        public void FuncCos()
+        {
+            AssertEqualtionHasSolution(x => Math.Cos(x), Math.PI / 4, 3 * Math.PI / 4, Math.PI / 2, 1e-7);
+        }
+
+        [Test]
+        public void SolutionOnSegmentStart()
+        {
+            AssertEqualtionHasSolution(x => 2 * x, 0, 10, 0, 1e-7);
+        }
+
+        [Test]
+        public void SolutionOnSegmentEnd()
+        {
+            AssertEqualtionHasSolution(x => 2 * x, -10, 0, 0, 1e-7);
         }
     }
 }

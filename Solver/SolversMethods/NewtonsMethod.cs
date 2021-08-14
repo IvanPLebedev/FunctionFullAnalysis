@@ -19,7 +19,8 @@ namespace FunctionFullAnalysis.Solver.SolversMethods
         public double GetSolution(Expression<Func<double, double>> function, double a, double b, double eps)
         {
             var f = function.Compile();
-            var fl = _differentiator.Run(function).Compile();
+            var dif = _differentiator.Run(function);
+            var fl = dif.Compile();
             var x0 = 2 * eps + a;
             var x1 = a;
             while (Math.Abs(x1 - x0) > eps)
