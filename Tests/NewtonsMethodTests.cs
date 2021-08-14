@@ -41,7 +41,7 @@ namespace FunctionFullAnalysis.Tests
         [Test]
         public void FuncSin()
         {
-            AssertEqualtionHasSolution(x => Math.Sin(x), -Math.PI/4, Math.PI/4, 0, 1e-7);
+            AssertEqualtionHasSolution(x => Math.Sin(x), -Math.PI / 4, Math.PI / 4, 0, 1e-7);
         }
 
         [Test]
@@ -49,10 +49,6 @@ namespace FunctionFullAnalysis.Tests
         {
             AssertEqualtionHasSolution(x => Math.Cos(x), Math.PI / 4, 3 * Math.PI / 4, Math.PI / 2, 1e-7);
         }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 89fc52b343ffcd1eba85528530d5294d5c4576c0
 
         [Test]
         public void SolutionOnSegmentStart()
@@ -65,10 +61,5 @@ namespace FunctionFullAnalysis.Tests
         {
             AssertEqualtionHasSolution(x => 2 * x, -10, 0, 0, 1e-7);
         }
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 3bfc1cebc8fdc4520a3c9d4d9b79e9783a689961
->>>>>>> 89fc52b343ffcd1eba85528530d5294d5c4576c0
     }
 }
