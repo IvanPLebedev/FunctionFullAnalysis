@@ -49,6 +49,7 @@ namespace FunctionFullAnalysis.Tests
         {
             AssertEqualtionHasSolution(x => Math.Cos(x), Math.PI / 4, 3 * Math.PI / 4, Math.PI / 2, 1e-7);
         }
+<<<<<<< HEAD
 
         [Test]
         public void SolutionOnSegmentStart()
@@ -61,5 +62,7 @@ namespace FunctionFullAnalysis.Tests
         {
             AssertEqualtionHasSolution(x => 2 * x, -10, 0, 0, 1e-7);
         }
+=======
+>>>>>>> 3bfc1cebc8fdc4520a3c9d4d9b79e9783a689961
     }
 }
