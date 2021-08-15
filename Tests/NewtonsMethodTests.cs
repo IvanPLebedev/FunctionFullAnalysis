@@ -61,5 +61,11 @@ namespace FunctionFullAnalysis.Tests
         {
             AssertEqualtionHasSolution(x => 2 * x, -10, 0, 0, 1e-7);
         }
+
+        [Test]
+        public void NoSolutionOnSegment()
+        {
+            Assert.Throws<ArgumentException>(()=> solver.GetSolution(x => x, 2, 3, 1e-7));
+        }
     }
 }
