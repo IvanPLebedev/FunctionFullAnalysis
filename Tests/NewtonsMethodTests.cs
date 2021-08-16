@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using FunctionFullAnalysis.Solver.SolversMethods;
 using FunctionFullAnalysis.Differentiators;
+using FunctionFullAnalysis.Utils;
 
 namespace FunctionFullAnalysis.Tests
 {
@@ -16,7 +17,8 @@ namespace FunctionFullAnalysis.Tests
         private readonly ISolverMethodOnSegment solver = new NewtonsMethod(new Differentiator());
         private void AssertEqualtionHasSolution(Expression<Func<double, double>> equaltion, double segmentStart, double segmentEnd, double expectedSolution, double eps)
         {
-            var solution = solver.GetSolution(equaltion, segmentStart, segmentEnd, eps);
+            var segment = new Segment(segmentStart, segmentEnd);
+            var solution = solver.GetSolution(equaltion, segment, eps);
             Assert.AreEqual(expectedSolution, solution, eps);
         }
 
@@ -65,7 +67,7 @@ namespace FunctionFullAnalysis.Tests
         [Test]
         public void NoSolutionOnSegment()
         {
-            Assert.Throws<ArgumentException>(()=> solver.GetSolution(x => x, 2, 3, 1e-7));
+            Assert.Throws<ArgumentException>(()=> solver.GetSolution(x => x, new Segment(2, 3), 1e-7));
         }
     }
 }
