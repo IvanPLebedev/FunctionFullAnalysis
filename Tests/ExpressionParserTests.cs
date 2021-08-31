@@ -6,15 +6,15 @@ using FunctionFullAnalysis.Parsers;
 namespace FunctionFullAnalysis.Tests
 {
     [TestFixture]
-    class SimpleExpressionParserTests
+    class ExpressionParserTests
     {
-        private SimpleExpressionParser parser = new SimpleExpressionParser();
+        private ExpressionParser parser = new ExpressionParser();
 
         [Test]
         public void Test1()
         {
-            var str = "x+2";
-            var func = parser.ParseExpression(str).Compile();
+            var str = "x + 2";
+            var func = parser.ParseExpressionOfX(str).Compile();
             var res = func(2);
         }
     }
