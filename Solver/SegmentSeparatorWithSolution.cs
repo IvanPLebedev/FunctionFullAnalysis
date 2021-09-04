@@ -5,7 +5,7 @@ using FunctionFullAnalysis.Utils;
 
 namespace FunctionFullAnalysis.Solver
 {
-    class SegmentSeparatorWithSolution : ISegmentSeparator
+    public class SegmentSeparatorWithSolution : ISegmentSeparator
     {
         public IEnumerable<Segment> GetSegmentsWithSolution(Expression<Func<double, double>> function, Segment domain, double step)
         {

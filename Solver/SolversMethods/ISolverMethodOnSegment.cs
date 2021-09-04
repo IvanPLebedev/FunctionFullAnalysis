@@ -4,7 +4,7 @@ using FunctionFullAnalysis.Utils;
 
 namespace FunctionFullAnalysis.Solver.SolversMethods
 {
-    interface ISolverMethodOnSegment
+    public interface ISolverMethodOnSegment
     {
         public double GetSolution(Expression<Func<double, double>> function, Segment segment, double eps);
     }

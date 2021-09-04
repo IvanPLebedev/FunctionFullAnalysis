@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FunctionFullAnalysis.Utils
+﻿namespace FunctionFullAnalysis.Utils
 {
-    class Segment
+    public class Segment
     {
         public Segment(double a, double b)
         {

@@ -5,8 +5,8 @@ using FunctionFullAnalysis.Utils;
 
 namespace FunctionFullAnalysis.Solver
 {
-    public interface ISegmentSeparator
+    interface ISolver
     {
-        IEnumerable<Segment> GetSegmentsWithSolution(Expression<Func<double, double>> function, Segment domain, double step);
+        IEnumerable<double> GetSolutionsInSegment(Expression<Func<double, double>> function, Segment segment, double miniSegmentsLengs, double eps);
     }
 }

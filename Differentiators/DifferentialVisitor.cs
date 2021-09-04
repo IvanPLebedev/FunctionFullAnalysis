@@ -31,10 +31,13 @@ namespace FunctionFullAnalysis.Differentiators
             switch (binaryExpr.NodeType) 
             {
                 case ExpressionType.Add:
+                case ExpressionType.AddChecked:
                     return Expression.Add(Differntial(binaryExpr.Left), Differntial(binaryExpr.Right));  
                 case ExpressionType.Subtract:
+                case ExpressionType.SubtractChecked:
                     return Expression.Subtract(Differntial(binaryExpr.Left), Differntial(binaryExpr.Right));
                 case ExpressionType.Multiply:
+                case ExpressionType.MultiplyChecked:
                     return Expression.Add(Expression.Multiply(Differntial(binaryExpr.Left), binaryExpr.Right), Expression.Multiply(binaryExpr.Left, Differntial(binaryExpr.Right)));
                 case ExpressionType.Divide:
                     return Expression.Divide(
@@ -42,8 +45,9 @@ namespace FunctionFullAnalysis.Differentiators
                             Expression.Multiply(Differntial(binaryExpr.Left), binaryExpr.Right), 
                             Expression.Multiply(binaryExpr.Left, Differntial(binaryExpr.Right))), 
                         Expression.Multiply(binaryExpr.Right, binaryExpr.Right));
+                default:
+                    throw new NotImplementedException($"Метод {binaryExpr.NodeType} не реализован");
             }
-            throw new NotImplementedException($"Метод {binaryExpr.NodeType} не реализован"); 
         }
 
         protected override Expression VisitMethodCall(MethodCallExpression methodCall)
